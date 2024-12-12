@@ -1,0 +1,23 @@
+# POST http://localhost:5000/api/users/sign-up HTTP/1.1
+# Content-Type: application/json
+
+# {
+#     "firstName": "Rany",
+#     "lastName": "Doe",
+#     "email": "rany.doe@gmail.com",
+#     "password": "querty"
+# }
+
+
+POST http://localhost:5000/api/users/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "cate.doe@gmail.com",
+    "password": "querty"
+}
+
+# GET http://localhost:5000/api/chats/674c52da24f38c774f72c2df HTTP/1.1
+
+# GET http://localhost:5000/api/users/ HTTP/1.1
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzU4YzZmOThlNTZhYzZhNmQ0MmE4ZjUiLCJlbWFpbCI6ImNhdGUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTczNDAwMDc3NywiZXhwIjoxNzM0MDA0Mzc3fQ.AXxR2vvutiSlU1nqLFa-CKllVrPWS1AritzM3x3CWd0

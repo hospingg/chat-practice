@@ -1,0 +1,80 @@
+/* Загальний стиль для компоненти чату */
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Заголовок чату */
+.chat h3 {
+  margin: 0;
+  padding: 16px;
+  background-color: #0078d4;
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Контейнер для повідомлень */
+.messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+/* Стиль для повідомлення */
+.message {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ім'я автора */
+.message strong {
+  color: #0078d4;
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+/* Тіло повідомлення */
+.message span {
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Стиль для повідомлення, якщо його немає */
+.messages p {
+  text-align: center;
+  color: #888;
+  font-size: 1rem;
+  margin-top: 16px;
+}
+
+/* Анімація для нових повідомлень */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message {
+  animation: fadeIn 0.3s ease-in-out;
+}

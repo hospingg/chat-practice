@@ -1,0 +1,6 @@
+POST http://localhost:5000/api/users/refresh-session HTTP/1.1
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzU4YzZmOThlNTZhYzZhNmQ0MmE4ZjUiLCJlbWFpbCI6ImNhdGUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTczNDAwNDk4MSwiZXhwIjoxNzM0MjY0MTgxfQ.5MJn25hcC8P-bofRuWDvH0ycgROsO5mwpA9OscSIId4"
+}

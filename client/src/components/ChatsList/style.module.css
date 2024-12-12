@@ -1,0 +1,85 @@
+/* Загальний стиль для списку чатів */
+.chatsList {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.chatsList h3 {
+  margin: 0;
+  padding: 16px;
+  background-color: #0078d4;
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Контейнер для списку елементів чату */
+.chatsList > div {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+/* Стиль для елемента чату */
+.chatItem {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chatItem:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Виділений чат */
+.current-chat {
+  background-color: #0078d4;
+  color: white;
+  border-color: #0056a3;
+}
+
+.current-chat:hover {
+  background-color: #0056a3;
+}
+
+/* Заголовок елемента чату */
+.chatHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chatName {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.lastMessageTime {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Контейнер для членів чату */
+.members {
+  font-size: 0.9rem;
+  color: #888;
+}

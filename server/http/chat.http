@@ -1,0 +1,30 @@
+
+# POST http://localhost:5000/api/chats/ HTTP/1.1
+# Content-Type: application/json
+
+# {
+#     "chatName": "тріо"
+# }
+
+# PUT http://localhost:5000/api/chats/674f061eae85455912deb4ab HTTP/1.1
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzU4YzZmOThlNTZhYzZhNmQ0MmE4ZjUiLCJlbWFpbCI6ImNhdGUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTczMzk0MDY4MiwiZXhwIjoxNzMzOTQxMDQyfQ.abbszOzXL2_HgnWJWhP86MtWn3k0LkcP6ZpPvhJawKo
+
+# GET http://localhost:5000/api/chats/ HTTP/1.1
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzU4YzZmOThlNTZhYzZhNmQ0MmE4ZjUiLCJlbWFpbCI6ImNhdGUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTczMzg3MTM5MCwiZXhwIjoxNzM0MTMwNTkwfQ.2kHrov0djJO8ljXW60Q5hoIzaZCyF0wzMl4UadCpfa8
+
+PUT http://localhost:5000/api/chats/674f0619ae85455912deb4a9 HTTP/1.1
+Authorization: Bearer eyNhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzU4YzZmOThlNTZhYzZhNmQ0MmE4ZjUiLCJlbWFpbCI6ImNhdGUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTczNDAwNjg3NywiZXhwIjoxNzM0MDEwNDc3fQ.vyojOozAnmDCOp-qq_iqH8DychRuYpeZbiBj53dXbXA
+
+
+
+# GET http://localhost:5000/api/chats/674f0619ae85455912deb4a9 HTTP/1.1
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcklkIjoiNjc1OGM2Zjk4ZTU2YWM2YTZkNDJhOGY1IiwiZW1haWwiOiJjYXRlLmRvZUBnbWFpbC5jb20ifSwiaWF0IjoxNzMzOTk2MDU1LCJleHAiOjE3MzM5OTY0MTV9.SyTlrG1DxG4K89A37OGv_h4LM2OyY3g5uZjhkpG8faI
+
+# POST http://localhost:5000/api/chats/674f0619ae85455912deb4a9 HTTP/1.1
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzU4YzZmOThlNTZhYzZhNmQ0MmE4ZjUiLCJlbWFpbCI6ImNhdGUuZG9lQGdtYWlsLmNvbSIsImlhdCI6MTczMzk5NTY1MSwiZXhwIjoxNzMzOTk2MDExfQ.M0SGNd9h8mOntJG8glZD5x2IjoZyT6SOb-_dnPMGI4c
+
+# {
+#     "author": "6758c560afa98882636ce7bc",
+#     "body": "HI]]"
+# }
