@@ -2,7 +2,7 @@ const { JsonWebTokenError, TokenExpiredError } = require('jsonwebtoken')
 const AuthError  = require('./errors/tokenError') 
 
 module.exports.errorHandler = async (err, req, res, next) =>{
-    console.log(err)
+    // console.log(err)
     if(err instanceof AuthError){
         return res.status(401).send(err.message || 'Need authorization')
     }

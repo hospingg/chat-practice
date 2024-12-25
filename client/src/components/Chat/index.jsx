@@ -1,30 +1,39 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import styles from './style.module.css';
 import ChatContext from '../../contexts/ChatContext';
 import { getChatsMessages } from '../../api';
 import MessageItem from './MessageItem';
+import { connect } from 'react-redux';
+ 
+function Chat(props) {
+  // const { currentChat, messages: contextMessages, setMessages } = useContext(ChatContext);
 
-export default function Chat() {
-  const { currentChat } = useContext(ChatContext);
-  const [messages, setMessages] = useState([]);
+  // const scrollRef = useRef(null);
+  // useEffect(()=>{
+  //   scrollRef.current.scrollIntoView()
+  // })
 
-  useEffect(() => {
-    if (currentChat) {
-      getChatsMessages(currentChat._id)
-        .then((res) => {
-          const receivedMessages = res.data.data.messages;
-          setMessages(receivedMessages.length ? receivedMessages : []);
-        })
-        .catch((err) => console.error("Error fetching messages:", err));
-    }
-  }, [currentChat, messages]);
+
+
+  // useEffect(() => {
+  //   if (currentChat) {
+  //     getChatsMessages(currentChat._id)
+  //       .then((res) => {
+  //         const receivedMessages = res.data.data.messages;
+  //         setMessages(receivedMessages.length ? receivedMessages : []);
+  //       })
+  //       .catch((err) => console.error("Error fetching messages:", err));
+  //   }
+  // }, [currentChat, setMessages]);
+
+
 
   return (
     <div className={styles.chat}>
-      {currentChat && <h3>{currentChat.chatName}</h3>}
+      {props.chatData && <h3>{props.chatData.chatName}</h3>}
       <div className={styles.messages}>
-        {messages.length ? (
-          messages.map((message) => (
+        {props.chatData.messages && props.chatData.messages.length ? (
+          props.chatData.messages.map((message) => (
             <MessageItem key={message._id} message={message} />
           ))
         ) : (
@@ -32,6 +41,15 @@ export default function Chat() {
         )}
       </div>
     </div>
+    // <div>
+    //   {props.chatData.messages?.map(message => <MessageItem key = {message._id} message={message} ></MessageItem>)}
+    //   <div>ref={scrollRef}</div>
+    // </div>
   );
-
 }
+
+
+const mapStateToProps = ({chatData}) => ({chatData})
+
+
+export default connect(mapStateToProps)(Chat);

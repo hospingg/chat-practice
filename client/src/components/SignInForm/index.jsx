@@ -15,10 +15,17 @@ export default function SignInForm(props)
       }}
       onSubmit = {(values) => {
         setUserData(values)
-        signIn(values)
+        const res = signIn(values)
+        return res
         .then(res =>{
           console.log(res)
-          props.callBack(res)
+          if(res.status === 200){
+            props.callBack(res)
+          }
+          else{
+            console.log('Wrong username or password')
+          }
+          // console.log(res)
         })
       }}
     >

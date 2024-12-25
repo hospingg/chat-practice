@@ -25,7 +25,7 @@ export default function SignUpForm(props) {
         setUserData(values)
         signUp(values)
           .then(res =>{
-          console.log(res)
+          // console.log(res)
           props.callBack(res)
         })
       }}

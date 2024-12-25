@@ -16,15 +16,27 @@ const tokenConfig ={
 
 module.exports.createToken = ({userId, email}, {time, secret}) => promisifyJWTSign({userId, email}, secret, {expiresIn: time})
 
-const verifyToken = (token, {secret}) => promisifyJWTWerify(token, secret)
+const verifyToken = (token, {secret}) => {const res = promisifyJWTWerify(token, secret)
+    // console.log("info")
+    // console.log(res)
+    return res
+}
 
 module.exports.createTokenPair = async (userId, email) => {
+
+    const accessToken= await this.createToken({userId, email}, tokenConfig.access)
     return {
-        accessToken: await this.createToken({userId, email}, tokenConfig.access),
+        accessToken,
         refreshToken: await this.createToken({userId, email}, tokenConfig.refresh),
     }
 }
 
-module.exports.verifyAccessToken = async (token) => await verifyToken(token, tokenConfig.access)
+module.exports.verifyAccessToken = async (token) => {
+    const res = await verifyToken(token, tokenConfig.access)
+    console.log(res)
+    // res.userId = res.userId.userId
+
+    return res
+}
 
 module.exports.verifyRefreshToken = async (token) => await verifyToken(token, tokenConfig.refresh)

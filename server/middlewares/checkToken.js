@@ -8,9 +8,9 @@ module.exports.checkToken = async (req, res, next) =>{
             throw new AuthError('Youre not authorized')
         }
         const [, token] = authorization.split(' ')
-        console.log(token)
         
         req.payload =  await verifyAccessToken(token)
+        // console.log(req.payload)
         next()
     }
     catch(err){

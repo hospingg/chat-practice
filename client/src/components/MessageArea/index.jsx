@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { useField } from 'formik';
 import styles from './style.module.css';
+import ChatContext from '../../contexts/ChatContext';
 
 export default function MessageArea({ onSend }) {
+  // const { currentChat } = useContext(ChatContext);
   const [message, setMessage] = useState('');
 
   const handleSend = () => {

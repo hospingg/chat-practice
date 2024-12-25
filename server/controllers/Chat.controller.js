@@ -11,26 +11,39 @@ module.exports.createChat = async (req, res, next) =>{
     }
 }
 
-
 module.exports.addMessage = async (req, res, next) => {
-    try{
-        const {body, params: {chatId}} = req;
-        const newMessageInstanse = await Message.create({...body, ...chatId})
-         
-        const chatInstanse = await Chat.findById(chatId);
+    try {
+        const { body, params: { chatId }, payload: { userId } } = req;
 
-        chatInstanse.messages.push(newMessageInstanse)
-        await chatInstanse.save();
-        res.status(201).send({data: newMessageInstanse})
+        const newMessageInstance = await Message.create({
+            ...body,
+            chatId: chatId,
+            author: userId,
+        });
+
+        const chatInstance = await Chat.findById(chatId);
+        if (!chatInstance) {
+            return res.status(404).send({ error: 'Chat not found' });
+        }
+        chatInstance.messages.push(newMessageInstance._id);
+        await chatInstance.save();
+
+        const populatedMessage = await newMessageInstance.populate({
+            path: 'author',
+            select: 'lastName firstName',
+        });
+
+        res.status(201).send( populatedMessage );
+    } catch (err) {
+        next(err);
     }
-    catch(err){
-        next(err)
-    }
-}
+};
+
 
 module.exports.getAllChatsByUser = async (req, res, next) => {
     try{
         const {payload: {userId}} = req
+        // console.log(req.payload)
         const chats = await Chat.find({
             members: userId
         })
@@ -74,6 +87,7 @@ module.exports.addUserToChat = async (req, res, next) => {
         const userInstanse = await User.findById(userId)
          
         const chatInstanse = await Chat.findById(chatId);
+        console.log(chatId, req.payload)
 
         if(!userInstanse || ! chatInstanse){
             throw new Error('user or chat is not defined')

@@ -3,8 +3,9 @@ import SignInForm from '../../components/SignInForm'
 import SignUpForm from '../../components/SignUpForm'
 import styles from './style.module.css';
 import history from '../../history';
+import { connect } from 'react-redux';
 
-export default function Home(props) {
+function Home(props) {
     const [formView, setFormView] = useState(true);
     const [userData, setUserData] = useState(null)
 
@@ -12,10 +13,10 @@ export default function Home(props) {
         setFormView(!formView)
     }
     const sendUser = (data) =>{
-      console.log(data) 
-      props.setUser(data)
+      // console.log(data) 
+      props.setUser(data.data.data)
       history.push('/messager')
-      console.log(data)
+      // console.log(data)
       localStorage.setItem('accessToken', data.data.tokens.accessToken)
       localStorage.setItem('refreshToken', data.data.tokens.refreshToken)
     }
@@ -23,6 +24,9 @@ export default function Home(props) {
     useEffect(()=>{
 
     }, [userData]);
+    if(props.userData){
+      history.push('/messager')
+    }
   return (
     <main className={styles.main}>
         <button onClick={changeView}>{formView ? 'видно' : 'не видно'}</button>
@@ -30,3 +34,7 @@ export default function Home(props) {
     </main>
   )
 }
+
+const mapStateToProps = ({userData, error}) => ({userData, error})
+
+export default connect(mapStateToProps)(Home);

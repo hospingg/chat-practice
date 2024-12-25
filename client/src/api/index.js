@@ -6,6 +6,7 @@ const httpClient = axios.create({
 }) 
 httpClient.interceptors.request.use((config) => {
     const token = localStorage.getItem('accessToken')
+    // console.log(token)
     if(token){
         config.headers = {
             ...config.headers,
@@ -17,6 +18,7 @@ httpClient.interceptors.request.use((config) => {
 
 
 httpClient.interceptors.response.use((response) => {
+    // console.log(response)
     if(response.data.tokens){
         const {data:{tokens: {accessToken, refreshToken}}} = response
         localStorage.setItem('refreshToken', refreshToken)
@@ -25,20 +27,26 @@ httpClient.interceptors.response.use((response) => {
     return response; 
 
 }, (err) => {
-    
-    if( err.response.status === 403 && localStorage.getItem('refreshToken')){
-        debugger
-        return refreshToken()
+    // console.log(err)
+    if(err.response.status === 401){
+        logOut()
+        history.replace('/')
+    }
+    else if( err.response.status === 403 && localStorage.getItem('refreshToken')){
+        // console.log(err)    
+        // debugger
+        refreshToken()
         .then(() =>{
             return httpClient(err.config);
         })
-        console.log(err.response)
-    } else if(err.response.status === 401 ){
-        logOut()
+    //     // console.log(err.response)
+    } 
+    else if( err.response.status === 403){
         history.replace('/')
     }
     else{
         console.log(err)
+        return err.config;
     }
 
 })
@@ -50,7 +58,7 @@ export const selectChat = async (chatId) => await httpClient.post(`/chats/${chat
 export const getUser = async () => await httpClient.get('/users/')
 
 export const addMessage = async ({ chatId, body, author }) => {
-    console.log({body})
+    // console.log({body})
     // const accessToken = localStorage.getItem('accessToken');
     // const headers = {
     //     Authorization: `Bearer ${accessToken}`,
@@ -62,8 +70,13 @@ export const addMessage = async ({ chatId, body, author }) => {
 
 export const refreshToken = async () => {
     const refreshToken = localStorage.getItem('refreshToken')
+    localStorage.clear();
+    if(refreshToken || refreshToken !== 'undefined'){
+        const res =  await httpClient.post('/users/refresh-session', {refreshToken})
+        console.log(res)
+        return res  
+    }
     
-    return await httpClient.post('/users/refresh-session', {refreshToken})
 }
 
 export const getChatsList = async () => {
